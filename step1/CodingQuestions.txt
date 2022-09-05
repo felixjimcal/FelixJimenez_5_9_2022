@@ -1,34 +1,97 @@
 General Questions
 
 1. Name some tools and/or techniques that you personally find to be the most helpful surrounding development.
+Techniques:
+I like to avoid the use of else statements, use a “result” variable in functions instead of a lot of returns and the use of algorithms 
+instead of for loops. I take refactoring as a game, I try to find pieces of code to improve, I start with baby steps in code till I 
+consider the option of making a change in the design 'cause sometimes refactoring is not the solution for a bad designed structure.
+I also consider the option to start using the <assert> library for TDD without third parties test frameworks. That allows me to build
+quickly a pseudocode solution and then improve the code to a better test suitcase with mocks, if needed, and specific test.
+
+Tools:
+I like to work with kanban boards, trello principally. It allows the team to have a general view of the project status and today's job
+to be done, not only for me, also for my non-IT colleagues. If needed I also have experience with Atlassian Suite (Jira, BitBucket,
+Confluence). Depending on what environment I use Postman as a mandatory resource if we talk about API development. It allows me to do a quick check
+of new implementations and verify the status of production API requests, even for my non-IT colleagues looks useful 'cause Postman has a
+“Test collection” option for a quick view of the actual status of the API.
+
 
 2. Name some tools and/or techniques that you personally find to be the most helpful surrounding code maintenance.
+Documentation for new arrivals and testing.
+When I have to do something extraordinary, or I find something uncommon I prefer to leave a note for that, in the future and for new colleagues
+will be useful. For example, un C# there's a library to read .xlsx (EXCEL) files, to read a cell you need a function, let's call it "READCELL" but it does
+not work with 97-2003 version files, for that you need to take the text as a FORMULA and then parse it as text, sounds weird, I know.
+Or for example if you work with Linux environments and have to share a file, you must change permissions to a specific one, I will take a note of
+that, share it and paste the full command to do the job.
+
+The first thing I do when I see new code is to find its tests. Because the test speaks by itself, "RetrieveBillWithNoFees", then I understand there is a
+class that retrieves information, another one process the data and what case are we testing, then I check the code and 'e voila', the code should be in the
+same context.
 
 3. Explain your familiarity with automation infrastructures. The questions below are to help give a guideline, please feel free to be as detailed as you please. 
 a. How did you deploy and execute your test suites? 
+	We do CI before any upload in a staggin branch with mocked data, then we move to a develop branch with client test DB where we find some lacks of data and 
+	real examples there is where more feedback of our client is needed, then we have a Jenkins suite with a Test step before any CD.
+	
 b. How did you target different devices? 
 c. How did you handle scalability? 
+	I focus on SOLID principles, I prefer to be proactive and develop with the idea that the class MAY grow tomorrow instead of just do the code and make it work.
+	
 d. How did you report test results?
+	We use Postman for that, we build a "Test collection" to do all the test request and have a visual representation of the general status of the API.
 
 4. What testing frameworks are you familiar with for system level/desktop applications? 
-
+	I'm familiar with gTest (Google Test Framework), JUnit (Java) and MSTest (.Net).
+	
 5. What testing frameworks are you familiar with for browser applications? 
-
+	I have started to learn Squish(froglogic) to automatize that.
 6. What tools are you familiar with for Performance, Load and Stress testing? 
+	I heard about JMeter but not worked with it yet.
 
 7. Tell us about a project your worked on that you found to be interesting or unusual.
-
+	The first project I worked on. It was full solution for an industrial line process. It has all the elements a software development has.
+	Furthermore, it was build with Qt with a GUI based on widgets and third party charts, an API request maker, sockets, multithreading, an API with an MVC pattern, a 
+	database, Agile, everything.
+	
 Technical Questions
 
 1. When would you use multithreading vs multiprocessing? 
-
+	I will represent it that way: Multithreading = 1 result, Multiprocessing = N Results.
+	I use multithreading when I have to process the information step by step to achieve one specific results, and 
+	I prefer to use multiprocessing when I expect different results from the same data.
+	
 2. Describe the differences between Unit Tests, Functional Tests, and Integration Tests?
+	Unit tests check the smallest pieces of code, individually.
+	Integration tests, run modules of unit tests to perform tasks.
+	Functional tests, run a whole application.
+	
 	i. Do you have a preference and why? 
+		In Unit Tests, I like to find small bugs hided.
 
 3. What are the some of the pros and cons of object-oriented programming vs functional programming? 
-
+	OOP Pros:
+		Ideal for complex systems.
+		Hierarchy to reuse pieces of code.
+		Capacity to build objects and organize code.
+		
+	OOP Cons:
+		Can be difficult to maintain.
+		Hierarchy can be a pain in the ass.
+		
+	FP Pros:
+		Straight forward to achieve the task.
+		Focus on variables and functions.
+		
+	FP Cons:
+		Maybe not enough for complex solutions.
+		
 4. What security concerns have you come across in the past and how have you addressed them?
-
+	I understand that you mean on programming, I'm a strong defender of 2FA (Two Factors Authentication) with
+	a human element that can not be replied by a bot (SMS, token, etc.).
+	
+	If you are asking about work environment, I always lock my computer when I leave my desktop and 
+	never typed my password on computers of somebody else.
+	
 Small Programming Challenges
 
 1. Using a known programming language write a small program to: 
@@ -36,6 +99,15 @@ a. Query the OS for the OS Patches that are currently installed on the system.
 	i. For example, on windows: Windows Update Settings -> View Update History
 	iii. [Optional] Add a function to report if Automatic Updates are enabled or disabled for the device.
 b. How would you consider validating the above program returns all installed patches on the system from an automation perspective? 
-	i. What automation framework(s) you would consider utiltizing? 
+	Well, the quickest way that comes to my mind is in the amount of results, I mean, if there is a specific number of patches that should be installed I will compare that 
+	number, collected from any other resource with the result of my code.
+	
+	i. What automation framework(s) you would consider utilizing? 
+	I don't know about any test framework with OS support.
+	
 c. Let's say your program was written to be cross platform, how would you design an infrastructure for deploying your program and executing the test case(s) across multiple Windows, Linux and Mac devices?
+	I will start checking on what OS is running the code, once get the answer I will run a function or maybe open a second process because, in the worst case, I don't know if there is 
+	a library that is compatible on each OS.
+	
 	i. After a reboot, a system may show different patches as installed, would this cause complications with your validation? If so, what alternatives do you see available?
+	It should not. There must be a test case for that situation.
