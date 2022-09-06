@@ -1,15 +1,19 @@
+#include <QCoreApplication>
 #include "Interpreter.h"
-#include <fstream>
 #include <iostream>
 
-int main() {
+int main(int argc, char *argv[])
+{
+    QCoreApplication a(argc, argv);
+
     Interpreter interpreter;
 
     interpreter.ImportFile();
 
-    std::cout<<"Please, indicate a decade ("<< "1900" <<"/"<< "2010" << ")";
+    std::cout<<"Please, indicate a decade ("<< interpreter.movies.front().year <<"/"<<
+               interpreter.movies.back().year << ")"<<std::endl;
 
-    int decade;;
+    int decade = 1910;
     while(true){
         std::cin>>decade;
         if(std::cin.fail()){
@@ -21,9 +25,9 @@ int main() {
             break;
         }
     }
-
+    decade = interpreter.InterpretDecade(decade);
     std::vector<Movie> filteredMovies = interpreter.FilterMovies(decade);
     interpreter.ExportFile(decade, filteredMovies);
 
-  return 0;
+    return a.exec();
 }

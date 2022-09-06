@@ -1,7 +1,7 @@
 #ifndef INTERPRETER_H
 #define INTERPRETER_H
 
-#include "Movie.h"
+#include "movie.h"
 
 #include <algorithm>
 #include <string>
