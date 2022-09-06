@@ -1,8 +1,11 @@
+#include <QCoreApplication>
 #include "Interpreter.h"
-#include <fstream>
 #include <iostream>
 
-int main() {
+int main(int argc, char *argv[])
+{
+    QCoreApplication a(argc, argv);
+
     Interpreter interpreter;
 
     interpreter.ImportFile();
@@ -25,5 +28,5 @@ int main() {
     std::vector<Movie> filteredMovies = interpreter.FilterMovies(decade);
     interpreter.ExportFile(decade, filteredMovies);
 
-  return 0;
+    return a.exec();
 }
