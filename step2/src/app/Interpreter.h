@@ -6,6 +6,13 @@
 #include <algorithm>
 #include <string>
 #include <vector>
+#include <iostream>
+
+#include <QFile>
+#include <QJsonArray>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QTextStream>
 
 class Interpreter {
   public:

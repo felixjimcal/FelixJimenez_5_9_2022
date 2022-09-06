@@ -10,9 +10,11 @@ int main(int argc, char *argv[])
 
     interpreter.ImportFile();
 
-    std::cout<<"Please, indicate a decade ("<< "1900" <<"/"<< "2010" << ")";
+    std::cout<<"Please, indicate a decade ("<< interpreter.movies.front().year <<"/"<<
+               interpreter.movies.back().year << ")"<<std::endl;
 
-    int decade;;
+    int decade = 1910;
+    /*
     while(true){
         std::cin>>decade;
         if(std::cin.fail()){
@@ -24,7 +26,8 @@ int main(int argc, char *argv[])
             break;
         }
     }
-
+    */
+    decade = interpreter.InterpretDecade(decade);
     std::vector<Movie> filteredMovies = interpreter.FilterMovies(decade);
     interpreter.ExportFile(decade, filteredMovies);
 
