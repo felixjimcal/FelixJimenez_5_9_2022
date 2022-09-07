@@ -16,14 +16,14 @@
 # SO,
 # * test for Param of two digits (30, 40, ...),
 # * test for Para of Four digits (1920, 2010, ...)
-# * End-to-End test? I will assume the file is generated for now, I will focus on core requirements
+# * End-to-End test? Just check the array of movies if they are correctly filtered
 
 import unittest
 from Interpreter import Interpreter
 
 class MoviesTest(unittest.TestCase):
 
-    def test_ParseParamOfFourDigits(self):
+    def test_ShouldParseParamOfFourDigits(self):
         # Arrange
 
         # Act
@@ -33,7 +33,7 @@ class MoviesTest(unittest.TestCase):
         # Result
         self.assertEqual(expected_result, actual_result)
     
-    def test_ParseParamOfTwoDigits(self):
+    def test_ShouldParseParamOfTwoDigits(self):
         # Arrange
 
         # Act
@@ -42,6 +42,20 @@ class MoviesTest(unittest.TestCase):
         
         # Result
         self.assertEqual(expected_result, actual_result)
+
+    def test_ShouldReturnACollectionOfMoviesByDecade(self):
+        # Arrange
+
+        # Act
+        expected_result = 1980
+        actual_result = Interpreter.InterpretDecade(80)
+        filteredMovies = Interpreter.FilterMovies(actual_result)
+        
+        # Result
+        self.assertEqual(expected_result, actual_result)
+        for movie in filteredMovies:
+            self.assertTrue(movie['year'] >= actual_result)
+            self.assertTrue(movie["year"] <= actual_result + 9)
 
 if __name__ == '__main__':
     unittest.main()

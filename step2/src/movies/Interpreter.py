@@ -1,14 +1,7 @@
-from fileinput import filename
 import json
 
 movies = []
 class Interpreter(object):
-    def ImportFile():
-        with open('movies.json') as jsonFile:
-           data = json.load(jsonFile)
-           for d in data:
-            movies.append(d)
-
     def InterpretDecade(decade):
         result = decade
 
@@ -21,6 +14,10 @@ class Interpreter(object):
         return result
 
     def FilterMovies(decade):
+        with open('../../../data/movies.json', "rb") as jsonFile:
+           data = json.load(jsonFile)
+           for d in data:
+            movies.append(d)
         return [m for m in movies if m['year'] >= decade and m['year'] <= decade + 9]
 
     def ExportFile(decade, filteredMovies):

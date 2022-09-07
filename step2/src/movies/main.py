@@ -2,9 +2,7 @@
 from Interpreter import Interpreter
 
 
-if __name__ == "__main__":
-    Interpreter.ImportFile()
-    
+if __name__ == "__main__":    
     while True:
         try:
             decade = int(input('Type a decade 10-20...80 \n'))
