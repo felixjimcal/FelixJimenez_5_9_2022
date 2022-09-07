@@ -1,3 +1,10 @@
+# This is the end
+Can not install networkx on Python to continue.
+Not enough knowledge to solve step 3.
+Better next time.
+
+https://stackoverflow.com/questions/40088042/networkx-get-the-distance-between-nodes
+
 # Welcome!
 Thank you for considering NinjaRMM as your future home. In this repository you'll find some of our screening materials that we expect you to complete. The folder structure is explained below.
 
